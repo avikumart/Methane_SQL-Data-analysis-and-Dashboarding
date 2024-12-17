@@ -68,6 +68,9 @@ with st.sidebar:
 
 st.header("Methane Emissions Dashboard")
 
+with st.container():
+    st.image("Images/hon-ab-methane-emissions.webp", caption="Source: Honeywell")
+
 # put a 4 charts in column by column manner
 col1, col2 = st.columns(2)
 
