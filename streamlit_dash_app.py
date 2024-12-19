@@ -58,8 +58,8 @@ df4 = load_data("Data analysis CSVs/Top10_emittors.csv")
 
 # write a function to display barchart of emissions reasons and types
 def emissions_sources_count(data):
-    st.text("Methane emission sources")
-    df = data.groupby("type").count().reset_index()
+    st.text("Methane emission reasons")
+    df = data.groupby("type").value_counts().reset_index()
     st.bar_chart(df, x="type", y="count", color="#fc2c03",
                 x_label="Emission sources", y_label="Count of sources")
 
