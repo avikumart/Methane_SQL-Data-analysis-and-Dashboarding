@@ -56,11 +56,11 @@ df2 = load_data("Data analysis CSVs/methan_new.csv")
 df3 = load_data("Data analysis CSVs/top emissions segment.csv")
 df4 = load_data("Data analysis CSVs/Top10_emittors.csv")
 
-# write a function to display barchart of emissions reasons and types
+# write a function to display barchart of emissions segments
 def emissions_sources_count(data):
-    st.text("Methane emission reasons")
-    df = data.groupby("type").value_counts().reset_index()
-    st.bar_chart(df, x="type", y="count", color="#fc2c03",
+    st.text("Methane emission segments")
+    df = data.groupby("segment").value_counts().reset_index()
+    st.bar_chart(df, x="segment", y="count", color="#fc2c03",
                 x_label="Emission sources", y_label="Count of sources")
 
 # write a function to display area chart of emissions by region
