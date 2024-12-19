@@ -56,6 +56,19 @@ df2 = load_data("Data analysis CSVs/methan_new.csv")
 df3 = load_data("Data analysis CSVs/top emissions segment.csv")
 df4 = load_data("Data analysis CSVs/Top10_emittors.csv")
 
+# write a function to display barchart of emissions reasons and types
+def emissions_sources_count(data):
+    st.text("Methane emission sources")
+    df = data.groupby("type").count().reset_index()
+    st.bar_chart(df, x="type", y="count", color="#fc2c03",
+                x_label="Emission sources", y_label="Count of sources")
+
+# write a function to display area chart of emissions by region
+def area_chart(data, x, y, color):
+    st.text("Emissions by regions of the world")
+    df = data.groupby(x)[y].mean().reset_index()
+    st.area_chart(df, x=x, y=y, color=color)
+
 st.logo(image="Images/streamlit-mark-color.png")
 
 with st.sidebar:
@@ -82,12 +95,18 @@ with col2:
     segment_of_emissions(df3)
 
 col3, col4 = st.columns(2)
-
 with col3:
     reasons(df2)
     
 with col4:
     top10_emittors(df4)
+
+col5, col6 = st.columns(2)
+with col5:
+    emissions_sources_count(df2)
+
+with col6:
+    area_chart(df2, "region", "emissions", "#d9ce38")
 
 with st.expander("Display the dataframes"):
     st.text("Emission sources dataframe")
